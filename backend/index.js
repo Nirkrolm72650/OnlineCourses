@@ -13,6 +13,16 @@ const port = 3003;
 // config dotenv
 dotenv.config();
 
+// Connexion à la base de données MongoDB
+const connect = async () => {
+    try{
+        await mongoose.connect(process.env.MONGODB);
+        console.log('Connecté à MongoDB');
+    }catch(error){
+        throw error;
+    }
+}
+
 // Middlewares
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -24,5 +34,6 @@ app.get('/', (req, res) => {
 })
 
 app.listen(port, () => {
+    connect();
     console.log("Serveur lancé sur le port ", port);
 })
