@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser');
 const axios = require('axios');
 
 const authRoute = require('./routes/auth.js');
+const userRoute = require('./routes/user.js');
 
 const app = express();
 const port = 3003;
@@ -32,6 +33,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use('/auth', authRoute);
+app.use('/user', userRoute);
 
 app.listen(port, () => {
     connect();
