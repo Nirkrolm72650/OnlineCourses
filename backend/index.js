@@ -7,6 +7,8 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const axios = require('axios');
 
+const authRoute = require('./routes/auth.js');
+
 const app = express();
 const port = 3003;
 
@@ -29,9 +31,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.send("Hello World");
-})
+app.use('/auth', authRoute);
 
 app.listen(port, () => {
     connect();
